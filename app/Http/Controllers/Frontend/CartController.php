@@ -128,6 +128,10 @@ class CartController extends Controller
         return response()->json(['success' => 'Course Remove From Cart']);
     } // End Method 
 
+    public function CouponApply(Request $request){
+
+    }// End Method 
+
 
 
 }
