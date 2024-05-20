@@ -1,0 +1,14 @@
+# Ensure text files use LF in the repository
+* text=auto eol=lf
+
+# Specify diff attributes for specific file types
+*.blade.php diff=html
+*.css diff=css
+*.html diff=html
+*.md diff=markdown
+*.php diff=php
+
+# Ignore certain files in export
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore
