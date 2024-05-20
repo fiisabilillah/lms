@@ -64,7 +64,7 @@
                             </form>
                         </div>
                     </div><!-- end card -->
-
+                    
                     <div class="card card-item">
                         <div class="card-body">
                             <h3 class="card-title fs-18 pb-2">Course Categories</h3>
@@ -73,7 +73,7 @@
                                @foreach ($categories as $cat)
                                 <li><a href="{{ url('category/'.$cat->id.'/'.$cat->category_slug) }}">{{ $cat->category_name }}</a></li> 
                                @endforeach 
-
+                                
                             </ul>
                         </div>
                     </div><!-- end card -->
@@ -225,7 +225,7 @@
                             </a>
                         </div>
                     </div><!-- end card -->
-
+                    
                     <div class="card card-item">
                         <div class="card-body">
                             <h3 class="card-title fs-18 pb-2">Level</h3>
@@ -256,7 +256,7 @@
                             </div><!-- end custom-control -->
                         </div>
                     </div><!-- end card -->
-
+                   
                     <div class="card card-item">
                         <div class="card-body">
                             <h3 class="card-title fs-18 pb-2">By Cost</h3>
@@ -281,14 +281,14 @@
                             </div><!-- end custom-control -->
                         </div>
                     </div><!-- end card -->
-
-
+                    
+                    
                 </div><!-- end sidebar -->
             </div><!-- end col-lg-4 -->
             <div class="col-lg-8">
                 <div class="row">
-
-
+                   
+                   
      @foreach ($courses as $course)
     <div class="col-lg-6 responsive-column-half">
         <div class="card card-item card-preview" data-tooltip-content="#tooltip_content_1">
@@ -345,7 +345,7 @@
     </div><!-- end col-lg-6 --> 
       @endforeach
 
-
+                    
                 </div><!-- end row -->
                 <div class="text-center pt-3">
                     <nav aria-label="Page navigation example" class="pagination-box">
