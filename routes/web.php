@@ -104,6 +104,18 @@ Route::controller(AdminController::class)->group(function(){
     Route::post('/update/user/stauts','UpdateUserStatus')->name('update.user.stauts'); 
 });
 
+// Admin Coruses All Route 
+Route::controller(AdminController::class)->group(function(){
+    Route::get('/admin/all/course','AdminAllCourse')->name('admin.all.course');
+    Route::post('/update/course/status','UpdateCourseStatus')->name('update.course.status');
+    Route::get('/admin/course/details/{id}','AdminCourseDetails')->name('admin.course.details');
+
+
+   
+});
+
+
+
 
 
 
@@ -192,7 +204,6 @@ Route::controller(CartController::class)->group(function(){
     Route::get('/mycart','MyCart')->name('mycart');
     Route::get('/get-cart-course','GetCartCourse');
     Route::get('/cart-remove/{rowId}','CartRemove');
-
     
 });
 
