@@ -8,8 +8,8 @@
             <div class="col-lg-9">
                 <div class="category-content-wrap">
                     <div class="section-heading">
-                        <h5 class="ribbon ribbon-lg mb-2">Categories</h5>
-                        <h2 class="section__title">Popular Categories</h2>
+                        <h5 class="ribbon ribbon-lg mb-2">Kategori</h5>
+                        <h2 class="section__title">Kategori Kegiatan</h2>
                         <span class="section-divider"></span>
                     </div><!-- end section-heading -->
                 </div>
