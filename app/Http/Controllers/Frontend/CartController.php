@@ -12,13 +12,16 @@ use App\Models\CourseSection;
 use App\Models\CourseLecture;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth; 
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\Coupon;
 use Illuminate\Support\Facades\Session;
 use App\Models\Payment;
 use App\Models\Order;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Orderconfirm;
+
 
 class CartController extends Controller
 {
@@ -206,10 +209,11 @@ class CartController extends Controller
     }// End Method 
 
 
+
     public function CheckoutCreate(){
 
         if (Auth::check()) {
-
+            
             if (Cart::total() > 0) {
                 $carts = Cart::content();
                 $cartTotal = Cart::total();
@@ -257,7 +261,7 @@ class CartController extends Controller
         $data->cash_delivery = $request->cash_delivery;
         $data->total_amount = $total_amount;
         $data->payment_type = 'Direct Payment';
-
+        
         $data->invoice_no = 'EOS' . mt_rand(10000000, 99999999);
         $data->order_date = Carbon::now()->format('d F Y');
         $data->order_month = Carbon::now()->format('F');
@@ -266,8 +270,9 @@ class CartController extends Controller
         $data->created_at = Carbon::now(); 
         $data->save();
 
-        foreach ($request->course_title as $key => $course_title) {
 
+       foreach ($request->course_title as $key => $course_title) {
+        
             $existingOrder = Order::where('user_id',Auth::user()->id)->where('course_id',$request->course_id[$key])->first();
 
             if ($existingOrder) {
@@ -292,6 +297,23 @@ class CartController extends Controller
 
            $request->session()->forget('cart');
 
+           $paymentId = $data->id;
+
+           /// Start Send email to student ///
+           $sendmail = Payment::find($paymentId);
+           $data = [
+                'invoice_no' => $sendmail->invoice_no,
+                'amount' => $total_amount,
+                'name' => $sendmail->name,
+                'email' => $sendmail->email,
+           ];
+
+           Mail::to($request->email)->send(new Orderconfirm($data));
+
+
+           /// End Send email to student /// 
+
+
             if ($request->cash_delivery == 'stripe') {
                echo "stripe";
             }else{
@@ -303,10 +325,12 @@ class CartController extends Controller
                 return redirect()->route('index')->with($notification); 
 
             }  
+       
+    }// End Method 
 
 
-    }// End Method
 
 
 
 }
+ 
