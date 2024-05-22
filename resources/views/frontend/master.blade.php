@@ -33,7 +33,31 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
-
+    <style>
+    /* Gaya umum */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        width: 80%;
+        margin: auto;
+        padding: 20px;
+    }
+    /* Gaya untuk perangkat dengan lebar layar <= 768px */
+    @media only screen and (max-width: 768px) {
+        .container {
+            width: 90%; /* Misalnya, mengubah lebar kontainer untuk layar kecil */
+        }
+    }
+    /* Gaya tambahan untuk perangkat dengan lebar layar <= 480px */
+    @media only screen and (max-width: 480px) {
+        .container {
+            width: 95%; /* Misalnya, mengubah lebar kontainer untuk layar sangat kecil */
+        }
+    }
+</style>
 </head>
 <body>
 
