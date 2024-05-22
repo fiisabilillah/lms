@@ -115,7 +115,7 @@
                                 </a>
                                 <div class="media-body">
                                     <h5 class="fs-15 pb-2"><a href="{{ url('course/details/'.$item->id.'/'.$item->options->slug) }}">{{ $item->name }} </a></h5>
-                                    <p class="text-black font-weight-semi-bold lh-18">${{ $item->price }} </p>
+                                    <p class="text-black font-weight-semi-bold lh-18">Rp.{{ $item->price }} </p>
                                 </div>
                             </div><!-- end media -->
                             @endforeach
@@ -136,7 +136,7 @@
                         <ul class="generic-list-item generic-list-item-flash fs-15">
                             <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
                                 <span class="text-black">SubTotal:</span>
-                                <span>${{ $cartTotal }}</span>
+                                <span>Rp.{{ $cartTotal }}</span>
                             </li>
                             <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
                                 <span class="text-black">Coupon Name:</span>
@@ -146,13 +146,13 @@
 
                             <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
                                 <span class="text-black">Coupon Dicount:</span>
-                                <span> ${{ session()->get('coupon')['discount_amount'] }}
+                                <span> RP.{{ session()->get('coupon')['discount_amount'] }}
                                 </span>
                             </li>
 
                             <li class="d-flex align-items-center justify-content-between font-weight-bold">
                                 <span class="text-black">Total:</span>
-                                <span>${{ session()->get('coupon')['total_amount'] }}</span>
+                                <span>Rp.{{ session()->get('coupon')['total_amount'] }}</span>
                             </li>
                         </ul>
                         <input type="hidden" name="total" value="{{ $cartTotal}}">
@@ -162,7 +162,7 @@
 
                             <li class="d-flex align-items-center justify-content-between font-weight-bold">
                                 <span class="text-black">Total:</span>
-                                <span>${{ $cartTotal }}</span>
+                                <span>Rp.{{ $cartTotal }}</span>
                             </li>
                             <input type="hidden" name="total" value="{{ $cartTotal}}">
                         </ul>
