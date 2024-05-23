@@ -54,6 +54,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/get-wishlist-course/', 'GetWishlistCourse');
         Route::get('/wishlist-remove/{id}', 'RemoveWishlist');
     });
+
+        // User My Course All Route 
+        Route::controller(OrderController::class)->group(function(){
+            Route::get('/my/course','MyCourse')->name('my.course'); 
+    
+    
+        });
 });
 ///// End Auth Middleware 
 
