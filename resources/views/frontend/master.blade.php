@@ -32,7 +32,7 @@
 
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-
+<!-- 
     <style>
     /* Gaya umum */
     body {
@@ -57,7 +57,7 @@
             width: 95%; /* Misalnya, mengubah lebar kontainer untuk layar sangat kecil */
         }
     }
-</style>
+</style> -->
 </head>
 <body>
 
