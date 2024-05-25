@@ -76,8 +76,8 @@
                         <div class="payment-option-wrap">
                             <div class="payment-tab is-active">
                                 <div class="payment-tab-toggle">
-                                    <input checked="" id="bankTransfer" name="cash_delivery" type="radio" value="handcash">
-                                    <label for="bankTransfer">Direct Payment</label>
+                                    <input checked="" id="cashTransfer" name="cash_delivery" type="radio" value="handcash">
+                                    <label for="cashTransfer">Direct Payment</label>
                                 </div>
 
                                 <div class="payment-tab-toggle">
