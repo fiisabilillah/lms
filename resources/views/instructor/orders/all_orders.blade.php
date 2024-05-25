@@ -15,12 +15,12 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-
+           
             </div>
         </div>
     </div>
     <!--end breadcrumb-->
-
+  
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
@@ -37,7 +37,7 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                       
                         @foreach ($orderItem as $key=> $item) 
                         <tr>
                             <td>{{ $key+1 }}</td>
@@ -47,25 +47,25 @@
                             <td>{{ $item['payment']['payment_type'] }}</td> 
                             <td> <span class="badge bg-success">{{ $item['payment']['status'] }}</span> </td> 
                             <td>
-       <a href="{{ route('edit.course',$item->id) }}" class="btn btn-info" title="Edit"><i class="lni lni-eye"></i> </a>   
+       <a href="{{ route('instructor.order.details',$item->payment->id) }}" class="btn btn-info" title="Edit"><i class="lni lni-eye"></i> </a>   
        <a href="{{ route('instructor.order.invoice',$item->payment->id) }}" class="btn btn-danger"   title="Invoice"><i class="lni lni-download"></i> </a>  
-
+                         
                             </td>
                         </tr>
                         @endforeach
-
+                         
                     </tbody>
-
+                     
                 </table>
             </div>
         </div>
     </div>
 
 
-
-
+   
+   
 </div>
-
+ 
 
 
 
