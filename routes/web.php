@@ -13,7 +13,6 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\OrderController;
-use App\Http\Controllers\Backend\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,22 +54,6 @@ Route::controller(WishListController::class)->group(function(){
      
 
 });
-
-
-    // User My Course All Route 
-    Route::controller(OrderController::class)->group(function(){
-        Route::get('/my/course','MyCourse')->name('my.course'); 
-        Route::get('/course/view/{course_id}','CourseView')->name('course.view'); 
-    
-    });
-
-
-     // User Question All Route 
-     Route::controller(QuestionController::class)->group(function(){
-        Route::post('/user/question','UserQuestion')->name('user.question');  
-    
-    });
-    
 
 
 
@@ -127,7 +110,7 @@ Route::controller(AdminController::class)->group(function(){
 // Admin Coruses All Route 
 Route::controller(AdminController::class)->group(function(){
     Route::get('/admin/all/course','AdminAllCourse')->name('admin.all.course');
-    Route::post('/update/course/stauts','UpdateCourseStatus')->name('update.course.stauts');
+    Route::post('/update/course/stauts','UpdateCourseStatus')->name('update.course.status');
     Route::get('/admin/course/details/{id}','AdminCourseDetails')->name('admin.course.details');
    
 });
@@ -234,17 +217,6 @@ Route::controller(OrderController::class)->group(function(){
 });
 
 
-// Question All Order Route 
-Route::controller(QuestionController::class)->group(function(){
-    Route::get('/instructor/all/question','InstructorAllQuestion')->name('instructor.all.question'); 
-    Route::get('/question/details/{id}','QuestionDetails')->name('question.details'); 
-    Route::post('/instructor/replay','InstructorReplay')->name('instructor.replay'); 
-    
-  
-});
-
-
-
 
 }); // End Instructor Group Middleware 
 
@@ -287,7 +259,6 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
 
 Route::post('/payment', [CartController::class, 'Payment'])->name('payment');
-Route::post('/stripe_order', [CartController::class, 'StripeOrder'])->name('stripe_order');
 
 
 
