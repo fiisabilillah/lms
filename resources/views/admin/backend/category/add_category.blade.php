@@ -26,7 +26,7 @@
 
                 <div class="form-group col-md-6">
                     <label for="input1" class="form-label">Category Name</label>
-                    <input type="text" name="category_name" class="form-control" id="input1">
+                    <input type="text" name="category_name" class="form-control" id="input1" required>
                 </div>
 
                 <div class="col-md-6">
@@ -34,7 +34,8 @@
 
                 <div class="form-group col-md-6">
                     <label for="input2" class="form-label">Category Image </label>
-                    <input class="form-control" name="image" type="file" id="image">
+                    <input class="form-control" name="image" type="file" id="image" required>
+                    <span id="imageError" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-6">
@@ -58,6 +59,30 @@
 
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#myForm').submit(function(e) {
+            var image = $('#image').val();
+            if (!image) {
+                $('#imageError').text('Please Select Category Image').show();
+                e.preventDefault(); // Prevent form submission if image is not selected
+            } else {
+                $('#imageError').hide();
+            }
+        });
+
+        $('#image').change(function() {
+            var image = $('#image').val();
+            if (!image) {
+                $('#imageError').text('Please Select Category Image').show();
+            } else {
+                $('#imageError').hide();
+            }
+        });
+    });
+</script>
+
 
 <script type="text/javascript">
     $(document).ready(function() {

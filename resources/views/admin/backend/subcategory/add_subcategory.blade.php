@@ -26,19 +26,20 @@
 
                 <div class="form-group col-md-6">
                     <label for="input1" class="form-label"> Category Name</label>
-                    <select name="category_id" class="form-select mb-3" aria-label="Default select example">
+                    <select name="category_id" class="form-select mb-3" aria-label="Default select example" required>
                         <option selected="" disabled>Open this select menu</option>
                         @foreach ($category as $cat) 
                         <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
                         @endforeach
 
                     </select>
+                    <span id="categoryError" class="text-danger">Please select a category</span>
                 </div>
 
 
                 <div class="form-group col-md-6">
                     <label for="input1" class="form-label">SubCategory Name</label>
-                    <input type="text" name="subcategory_name" class="form-control" id="input1"  >
+                    <input type="text" name="subcategory_name" class="form-control" id="input1" required>
                 </div>
 
 
@@ -57,6 +58,25 @@
 
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('#myForm').submit(function(e) {
+            var category = $('select[name="category_id"]').val();
+            if (!category) {
+                $('#categoryError').show();
+                e.preventDefault(); // Prevent form submission if category is not selected
+            }
+        });
+
+        // Hide error message when category is selected
+        $('select[name="category_id"]').change(function() {
+            $('#categoryError').hide();
+        });
+    });
+</script>
+
+</script>
 
 <script type="text/javascript">
     $(document).ready(function (){
