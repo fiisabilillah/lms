@@ -14,7 +14,7 @@ use App\Models\CourseSection;
 use App\Models\CourseLecture;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
-use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\Coupon;
@@ -27,7 +27,8 @@ use App\Mail\Orderconfirm;
 
 class CartController extends Controller
 {
-    public function AddToCart(Request $request, $id){
+    public function AddToCart(Request $request, $id)
+    {
 
         $course = Course::find($id);
 
@@ -47,85 +48,39 @@ class CartController extends Controller
         if ($course->discount_price == NULL) {
 
             Cart::add([
-                'id' => $id, 
-                'name' => $request->course_name, 
-                'qty' => 1, 
-                'price' => $course->selling_price, 
-                'weight' => 1, 
+                'id' => $id,
+                'name' => $request->course_name,
+                'qty' => 1,
+                'price' => $course->selling_price,
+                'weight' => 1,
                 'options' => [
                     'image' => $course->course_image,
                     'slug' => $request->course_name_slug,
                     'instructor' => $request->instructor,
                 ],
-            ]); 
-
-        }else{
+            ]);
+        } else {
 
             Cart::add([
-                'id' => $id, 
-                'name' => $request->course_name, 
-                'qty' => 1, 
-                'price' => $course->discount_price, 
-                'weight' => 1, 
+                'id' => $id,
+                'name' => $request->course_name,
+                'qty' => 1,
+                'price' => $course->discount_price,
+                'weight' => 1,
                 'options' => [
                     'image' => $course->course_image,
                     'slug' => $request->course_name_slug,
                     'instructor' => $request->instructor,
                 ],
-            ]);  
+            ]);
         }
 
-        return response()->json(['success' => 'Successfully Added on Your Cart']); 
-
-    }// End Method 
-
-
-    public function CartData(){
-
-        $carts = Cart::content();
-        $cartTotal = Cart::total();
-        $cartQty = Cart::count();
-
-        return response()->json(array(
-            'carts' => $carts,
-            'cartTotal' => $cartTotal,
-            'cartQty' => $cartQty,
-        ));
-
-    }// End Method 
-
-
-    public function AddMiniCart(){
-
-        $carts = Cart::content();
-        $cartTotal = Cart::total();
-        $cartQty = Cart::count();
-
-        return response()->json(array(
-            'carts' => $carts,
-            'cartTotal' => $cartTotal,
-            'cartQty' => $cartQty,
-        ));
-
-    }// End Method 
-
-
-    public function RemoveMiniCart($rowId){
-
-        Cart::remove($rowId);
-        return response()->json(['success' => 'Course Remove From Cart']);
-
-    }// End Method 
-
-
-    public function MyCart(){
-
-        return view('frontend.mycart.view_mycart');
-
+        return response()->json(['success' => 'Successfully Added on Your Cart']);
     } // End Method 
 
 
-    public function GetCartCourse(){
+    public function CartData()
+    {
 
         $carts = Cart::content();
         $cartTotal = Cart::total();
@@ -136,28 +91,71 @@ class CartController extends Controller
             'cartTotal' => $cartTotal,
             'cartQty' => $cartQty,
         ));
+    } // End Method 
 
-    }// End Method 
 
-    public function CartRemove($rowId){
+    public function AddMiniCart()
+    {
+
+        $carts = Cart::content();
+        $cartTotal = Cart::total();
+        $cartQty = Cart::count();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartTotal' => $cartTotal,
+            'cartQty' => $cartQty,
+        ));
+    } // End Method 
+
+
+    public function RemoveMiniCart($rowId)
+    {
+
+        Cart::remove($rowId);
+        return response()->json(['success' => 'Course Remove From Cart']);
+    } // End Method 
+
+
+    public function MyCart()
+    {
+
+        return view('frontend.mycart.view_mycart');
+    } // End Method 
+
+
+    public function GetCartCourse()
+    {
+
+        $carts = Cart::content();
+        $cartTotal = Cart::total();
+        $cartQty = Cart::count();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartTotal' => $cartTotal,
+            'cartQty' => $cartQty,
+        ));
+    } // End Method 
+
+    public function CartRemove($rowId)
+    {
 
         Cart::remove($rowId);
 
         if (Session::has('coupon')) {
-           $coupon_name = Session::get('coupon')['coupon_name'];
-           $coupon = Coupon::where('coupon_name',$coupon_name)->first();
+            $coupon_name = Session::get('coupon')['coupon_name'];
+            $coupon = Coupon::where('coupon_name', $coupon_name)->first();
 
-           Session::put('coupon',[
-            'coupon_name' => $coupon->coupon_name,
-            'coupon_discount' => $coupon->coupon_discount,
-            'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
-            'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100 )
-        ]);
-
+            Session::put('coupon', [
+                'coupon_name' => $coupon->coupon_name,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => round(Cart::total() * $coupon->coupon_discount / 100),
+                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount / 100)
+            ]);
         }
         return response()->json(['success' => 'Course Remove From Cart']);
-
-    }// End Method 
+    } // End Method 
 
 
     // CODE LAMA CUPON
@@ -177,7 +175,7 @@ class CartController extends Controller
     //             'validity' => true,
     //             'success' => 'Coupon Applied Successfully'
     //         ));
-            
+
     //     }else {
     //         return response()->json(['error' => 'Invaild Coupon']);
     //     }
@@ -205,23 +203,24 @@ class CartController extends Controller
     // CODE LAMA CUPON
 
 
-    public function CouponApply(Request $request){
+    public function CouponApply(Request $request)
+    {
         // Temukan kupon yang valid
         $coupon = Coupon::where('coupon_name', $request->coupon_name)
-                        ->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))
-                        ->first();
-    
+            ->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))
+            ->first();
+
         if ($coupon) {
             $total = floatval(str_replace(',', '', Cart::total())); // Pastikan total adalah float
-    
+
             $discountAmount = round($total * $coupon->coupon_discount / 100);
             $totalAmount = round($total - $discountAmount);
-    
+
             // Logging untuk debugging
             // Log::info("Total before discount: $total");
             // Log::info("Discount amount: $discountAmount");
             // Log::info("Total after discount: $totalAmount");
-    
+
             // Simpan informasi kupon di sesi
             Session::put('coupon', [
                 'coupon_name' => $coupon->coupon_name,
@@ -229,18 +228,18 @@ class CartController extends Controller
                 'discount_amount' => $discountAmount,
                 'total_amount' => $totalAmount
             ]);
-    
+
             return response()->json([
                 'validity' => true,
                 'success' => 'Coupon Applied Successfully'
             ]);
-    
         } else {
             return response()->json(['error' => 'Invalid Coupon']);
         }
     }
-    
-    public function CouponCalculation() {
+
+    public function CouponCalculation()
+    {
         if (Session::has('coupon')) {
             return response()->json([
                 'subtotal' => Cart::total(),
@@ -255,49 +254,46 @@ class CartController extends Controller
             ]);
         }
     }
-    
 
 
-    public function CouponRemove(){
+
+    public function CouponRemove()
+    {
 
         Session::forget('coupon');
         return response()->json(['success' => 'Coupon Remove Successfully']);
-
-    }// End Method 
-
+    } // End Method 
 
 
-    public function CheckoutCreate(){
+
+    public function CheckoutCreate()
+    {
 
         if (Auth::check()) {
-            
+
             if (Cart::total() > 0) {
                 $carts = Cart::content();
                 $cartTotal = Cart::total();
                 $cartQty = Cart::count();
 
-                return view('frontend.checkout.checkout_view',compact('carts','cartTotal','cartQty'));
-            } else{
+                return view('frontend.checkout.checkout_view', compact('carts', 'cartTotal', 'cartQty'));
+            } else {
 
                 $notification = array(
                     'message' => 'Add At list One Course',
                     'alert-type' => 'error'
                 );
-                return redirect()->to('/')->with($notification); 
-
+                return redirect()->to('/')->with($notification);
             }
-
-        }else{
+        } else {
 
             $notification = array(
                 'message' => 'You Need to Login First',
                 'alert-type' => 'error'
             );
-            return redirect()->route('login')->with($notification); 
-
+            return redirect()->route('login')->with($notification);
         }
-
-    }// End Method 
+    } // End Method 
 
 
     // CODE LAMA
@@ -319,7 +315,7 @@ class CartController extends Controller
     //     $data->cash_delivery = $request->cash_delivery;
     //     $data->total_amount = $total_amount;
     //     $data->payment_type = 'Direct Payment';
-        
+
     //     $data->invoice_no = 'EOS' . mt_rand(10000000, 99999999);
     //     $data->order_date = Carbon::now()->format('d F Y');
     //     $data->order_month = Carbon::now()->format('F');
@@ -330,7 +326,7 @@ class CartController extends Controller
 
 
     //    foreach ($request->course_title as $key => $course_title) {
-        
+
     //         $existingOrder = Order::where('user_id',Auth::user()->id)->where('course_id',$request->course_id[$key])->first();
 
     //         if ($existingOrder) {
@@ -383,11 +379,12 @@ class CartController extends Controller
     //             return redirect()->route('index')->with($notification); 
 
     //         }  
-       
+
     // }// End Method 
     // CODE LAMA
 
-    public function Payment(Request $request){
+    public function Payment(Request $request)
+    {
 
         // Validasi data yang diterima
         $request->validate([
@@ -401,15 +398,15 @@ class CartController extends Controller
             'instructor_id' => 'required|array',
             'price' => 'required|array',
         ]);
-    
+
         // Mendapatkan total pembayaran
         if (Session::has('coupon')) {
-           $total_amount = Session::get('coupon')['total_amount'];
+            $total_amount = Session::get('coupon')['total_amount'];
         } else {
             $total_amount = floatval(str_replace(',', '', Cart::total()));
             $total_amount = round($total_amount);
         }
-    
+
         // Membuat record pembayaran baru
         $data = new Payment();
         $data->name = $request->name;
@@ -419,30 +416,30 @@ class CartController extends Controller
         $data->cash_delivery = $request->cash_delivery;
         $data->total_amount = $total_amount;
         $data->payment_type = 'Direct Payment';
-    
+
         $data->invoice_no = 'EOS' . mt_rand(10000000, 99999999);
         $data->order_date = Carbon::now()->format('d F Y');
         $data->order_month = Carbon::now()->format('F');
         $data->order_year = Carbon::now()->format('Y');
         $data->status = 'pending';
-        $data->created_at = Carbon::now(); 
+        $data->created_at = Carbon::now();
         $data->save();
-    
+
         // Memproses pesanan untuk setiap kursus yang dibeli
         foreach ($request->course_title as $key => $course_title) {
-        
-            $existingOrder = Order::where('user_id',Auth::user()->id)
-                                   ->where('course_id',$request->course_id[$key])
-                                   ->first();
-    
+
+            $existingOrder = Order::where('user_id', Auth::user()->id)
+                ->where('course_id', $request->course_id[$key])
+                ->first();
+
             if ($existingOrder) {
                 $notification = array(
                     'message' => 'You have already enrolled in this course.',
                     'alert-type' => 'error'
                 );
-                return redirect()->back()->with($notification); 
+                return redirect()->back()->with($notification);
             }
-    
+
             $order = new Order();
             $order->payment_id = $data->id;
             $order->user_id = Auth::user()->id;
@@ -451,15 +448,14 @@ class CartController extends Controller
             $order->course_title = $course_title;
             $order->price = $request->price[$key];
             $order->save();
-    
         }
-    
+
         // Hapus session keranjang belanja setelah pembelian berhasil
         $request->session()->forget('cart');
-    
+
         // Kirim email konfirmasi pembayaran
         $this->sendPaymentConfirmationEmail($data);
-    
+
         // Redirect sesuai jenis pembayaran yang dipilih
         if ($request->cash_delivery == 'stripe') {
             return "stripe"; // Ganti dengan tindakan yang sesuai untuk pembayaran melalui Stripe
@@ -468,25 +464,73 @@ class CartController extends Controller
                 'message' => 'Cash Payment Submitted Successfully',
                 'alert-type' => 'success'
             );
-            return redirect()->route('index')->with($notification); 
+            return redirect()->route('index')->with($notification);
         }
     }
-    
+
     // Metode untuk mengirim email konfirmasi pembayaran
-    private function sendPaymentConfirmationEmail($payment) {
+    private function sendPaymentConfirmationEmail($payment)
+    {
         $data = [
             'invoice_no' => $payment->invoice_no,
             'amount' => $payment->total_amount,
             'name' => $payment->name,
             'email' => $payment->email,
         ];
-    
+
         Mail::to($payment->email)->send(new Orderconfirm($data));
     }
-    
+
+
+    public function BuyToCart(Request $request, $id)
+    {
+
+        $course = Course::find($id);
+
+        // Check if the course is already in the cart
+        $cartItem = Cart::search(function ($cartItem, $rowId) use ($id) {
+            return $cartItem->id === $id;
+        });
+
+        if ($cartItem->isNotEmpty()) {
+            return response()->json(['error' => 'Course is already in your cart']);
+        }
+
+        if ($course->discount_price == NULL) {
+
+            Cart::add([
+                'id' => $id,
+                'name' => $request->course_name,
+                'qty' => 1,
+                'price' => $course->selling_price,
+                'weight' => 1,
+                'options' => [
+                    'image' => $course->course_image,
+                    'slug' => $request->course_name_slug,
+                    'instructor' => $request->instructor,
+                ],
+            ]);
+        } else {
+
+            Cart::add([
+                'id' => $id,
+                'name' => $request->course_name,
+                'qty' => 1,
+                'price' => $course->discount_price,
+                'weight' => 1,
+                'options' => [
+                    'image' => $course->course_image,
+                    'slug' => $request->course_name_slug,
+                    'instructor' => $request->instructor,
+                ],
+            ]);
+        }
+
+        return response()->json(['success' => 'Successfully Added on Your Cart']);
+    } // End Method 
+
 
 
 
 
 }
- 
