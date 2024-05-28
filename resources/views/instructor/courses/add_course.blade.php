@@ -165,13 +165,13 @@
              <div class="col-md-4">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="featured" value="1">
-                    <label class="form-check-label" for="flexCheckDefault">Featured</label>
+                    <label class="form-check-label" for="flexCheckDefault2">Featured</label>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="highestrated" value="1" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" name="highestrated" value="1" id="flexCheckDefault3">
                     <label class="form-check-label" >Highest Rated</label>
                 </div>
             </div>

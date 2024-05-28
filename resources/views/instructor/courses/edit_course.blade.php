@@ -138,7 +138,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="highestrated" value="1" id="flexCheckDefault1" {{ $course->highestrated == '1' ? 'checked' : '' }}>
 
-                            <label class="form-check-label" for="flexCheckDefault1">Highest Rated</label>
+                            <label class="form-check-label" for="flexCheckDefault3">Highest Rated</label>
                         </div>
                     </div>
 
