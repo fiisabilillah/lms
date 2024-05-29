@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\QuestionController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\ReviewController;
 
 
 
@@ -272,7 +273,6 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
 Route::post('/payment', [CartController::class, 'Payment'])->name('payment');
 
-
-
+Route::post('/store/review', [ReviewController::class, 'StoreReview'])->name('store.review');
 
 ///// End Route Accessable for All 
