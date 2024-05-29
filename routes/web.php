@@ -156,6 +156,13 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('/search/by/month', 'SearchByMonth')->name('search.by.month');
         Route::post('/search/by/year', 'SearchByYear')->name('search.by.year');
     });
+
+    // Admin Review All Route 
+    Route::controller(ReviewController::class)->group(function () {
+        Route::get('/admin/pending/review', 'AdminPendingReview')->name('admin.pending.review');
+        Route::post('/update/review/status','UpdateReviewStatus')->name('update.review.status'); 
+        Route::get('/admin/active/review','AdminActiveReview')->name('admin.active.review');
+    });
 }); // End Admin Group Middleware 
 
 
@@ -226,11 +233,11 @@ Route::middleware(['auth', 'roles:instructor'])->group(function () {
     // Instructor Coupon All Route 
     Route::controller(CouponController::class)->group(function () {
         Route::get('/instructor/all/coupon', 'InstructorAllCoupon')->name('instructor.all.coupon');
-        Route::get('/instructor/add/coupon','InstructorAddCoupon')->name('instructor.add.coupon');
-        Route::post('/instructor/store/coupon','InstructorStoreCoupon')->name('instructor.store.coupon');
-        Route::get('/instructor/edit/coupon/{id}','InstructorEditCoupon')->name('instructor.edit.coupon');
-        Route::post('/instructor/update/coupon','InstructorUpdateCoupon')->name('instructor.update.coupon');
-        Route::get('/instructor/delete/coupon/{id}','InstructorDeleteCoupon')->name('instructor.delete.coupon');
+        Route::get('/instructor/add/coupon', 'InstructorAddCoupon')->name('instructor.add.coupon');
+        Route::post('/instructor/store/coupon', 'InstructorStoreCoupon')->name('instructor.store.coupon');
+        Route::get('/instructor/edit/coupon/{id}', 'InstructorEditCoupon')->name('instructor.edit.coupon');
+        Route::post('/instructor/update/coupon', 'InstructorUpdateCoupon')->name('instructor.update.coupon');
+        Route::get('/instructor/delete/coupon/{id}', 'InstructorDeleteCoupon')->name('instructor.delete.coupon');
     });
 }); // End Instructor Group Middleware 
 
