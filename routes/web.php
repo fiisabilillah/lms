@@ -40,7 +40,7 @@ Route::get('/', [UserController::class, 'Index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('frontend.dashboard.index');
-})->middleware(['auth','roles:user','verified'])->name('dashboard');
+})->middleware(['auth', 'roles:user', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 
@@ -59,19 +59,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/wishlist-remove/{id}', 'RemoveWishlist');
     });
 
-       // User My Course All Route 
-       Route::controller(OrderController::class)->group(function(){
-        Route::get('/my/course','MyCourse')->name('my.course'); 
-        Route::get('/course/view/{course_id}','CourseView')->name('course.view'); 
-
-
+    // User My Course All Route 
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/my/course', 'MyCourse')->name('my.course');
+        Route::get('/course/view/{course_id}', 'CourseView')->name('course.view');
     });
 
-        // User Question All Route 
-        Route::controller(QuestionController::class)->group(function(){
-            Route::post('/user/question','UserQuestion')->name('user.question');  
-    
-        });
+    // User Question All Route 
+    Route::controller(QuestionController::class)->group(function () {
+        Route::post('/user/question', 'UserQuestion')->name('user.question');
+    });
 });
 ///// End Auth Middleware 
 
@@ -152,12 +149,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     });
 
     // Admin Report All Route 
-Route::controller(ReportController::class)->group(function(){
-    Route::get('/report/view','ReportView')->name('report.view'); 
-    Route::post('/search/by/date','SearchByDate')->name('search.by.date');
-    Route::post('/search/by/month','SearchByMonth')->name('search.by.month');
-    Route::post('/search/by/year','SearchByYear')->name('search.by.year');
-});
+    Route::controller(ReportController::class)->group(function () {
+        Route::get('/report/view', 'ReportView')->name('report.view');
+        Route::post('/search/by/date', 'SearchByDate')->name('search.by.date');
+        Route::post('/search/by/month', 'SearchByMonth')->name('search.by.month');
+        Route::post('/search/by/year', 'SearchByYear')->name('search.by.year');
+    });
 }); // End Admin Group Middleware 
 
 
@@ -213,21 +210,27 @@ Route::middleware(['auth', 'roles:instructor'])->group(function () {
     // Admin All Order Route 
     Route::controller(OrderController::class)->group(function () {
         Route::get('/instructor/all/order', 'InstructorAllOrder')->name('instructor.all.order');
-        Route::get('/instructor/order/details/{payment_id}','InstructorOrderDetails')->name('instructor.order.details'); 
-        Route::get('/instructor/order/invoice/{payment_id}','InstructorOrderInvoice')->name('instructor.order.invoice');
+        Route::get('/instructor/order/details/{payment_id}', 'InstructorOrderDetails')->name('instructor.order.details');
+        Route::get('/instructor/order/invoice/{payment_id}', 'InstructorOrderInvoice')->name('instructor.order.invoice');
     });
 
 
     // Question All Order Route 
-Route::controller(QuestionController::class)->group(function(){
-    Route::get('/instructor/all/question','InstructorAllQuestion')->name('instructor.all.question'); 
-    Route::get('/question/details/{id}','QuestionDetails')->name('question.details'); 
-    Route::post('/instructor/replay','InstructorReplay')->name('instructor.replay'); 
+    Route::controller(QuestionController::class)->group(function () {
+        Route::get('/instructor/all/question', 'InstructorAllQuestion')->name('instructor.all.question');
+        Route::get('/question/details/{id}', 'QuestionDetails')->name('question.details');
+        Route::post('/instructor/replay', 'InstructorReplay')->name('instructor.replay');
+    });
 
-
-});
-
-
+    // Instructor Coupon All Route 
+    Route::controller(CouponController::class)->group(function () {
+        Route::get('/instructor/all/coupon', 'InstructorAllCoupon')->name('instructor.all.coupon');
+        Route::get('/instructor/add/coupon','InstructorAddCoupon')->name('instructor.add.coupon');
+        Route::post('/instructor/store/coupon','InstructorStoreCoupon')->name('instructor.store.coupon');
+        Route::get('/instructor/edit/coupon/{id}','InstructorEditCoupon')->name('instructor.edit.coupon');
+        Route::post('/instructor/update/coupon','InstructorUpdateCoupon')->name('instructor.update.coupon');
+        Route::get('/instructor/delete/coupon/{id}','InstructorDeleteCoupon')->name('instructor.delete.coupon');
+    });
 }); // End Instructor Group Middleware 
 
 
