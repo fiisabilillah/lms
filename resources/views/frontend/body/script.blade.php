@@ -85,8 +85,8 @@
                     <div class="d-flex justify-content-between align-items-center">
                         
                         ${value.course.discount_price == null 
-                        ?`<p class="card-price text-black font-weight-bold">Rp.${value.course.selling_price}</p>`
-                        :`<p class="card-price text-black font-weight-bold">Rp.${value.course.discount_price} <span class="before-price font-weight-medium">Rp.${value.course.selling_price}</span></p>`
+                        ?`<p class="card-price text-black font-weight-bold">$${value.course.selling_price}</p>`
+                        :`<p class="card-price text-black font-weight-bold">$${value.course.discount_price} <span class="before-price font-weight-medium">$${value.course.selling_price}</span></p>`
                         } 
                        
                         <div class="icon-element icon-element-sm shadow-sm cursor-pointer" data-toggle="tooltip" data-placement="top" title="Remove from Wishlist" id="${value.id}" onclick="wishlistRemove(this.id)" ><i class="la la-heart"></i></div>
@@ -206,8 +206,11 @@
 </script>
      {{-- /// End Add To Cart  // --}}
 
-     {{-- /// Start Buy Now Button  // --}}
+
+
+         {{-- /// Start Buy Now Button  // --}}
   <script type="text/javascript">
+ 
     function buyCourse(courseId, courseName, instructorId, slug){
          $.ajax({
              type: "POST",
@@ -220,6 +223,7 @@
              },
  
              url: "/buy/data/store/"+ courseId,
+
              success: function(data) {
                  miniCart();
  
@@ -238,6 +242,7 @@
                      icon: 'success', 
                      title: data.success, 
                      });
+
                      // Redirect to the checkout page 
                      window.location.href = '/checkout';
  
@@ -282,7 +287,7 @@
                             <div class="media-body">
                                 <h5><a href="/course/details/${value.id}/${value.options.slug}"> ${value.name}</a></h5>
                                   
-                                 <span class="d-block fs-14">Rp.${value.price}</span>
+                                 <span class="d-block fs-14">$${value.price}</span>
                                  <a type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="la la-times"></i> </a> 
                             </div>
                         </li> 
@@ -371,7 +376,7 @@ const Toast = Swal.mixin({
                     </td>
                     <td>
                         <ul class="generic-list-item font-weight-semi-bold">
-                            <li class="text-black lh-18">Rp.${value.price}</li>
+                            <li class="text-black lh-18">$${value.price}</li>
                             
                         </ul>
                     </td>
@@ -506,12 +511,12 @@ const Toast = Swal.mixin({
                 <div class="divider"><span></span></div>
                 <ul class="generic-list-item pb-4">
                     <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
-                        <span class="text-black">Subtotal:</span>
-                        <span>Rp.${data.total} </span>
+                        <span class="text-black">Subtotal:$</span>
+                        <span>$${data.total} </span>
                     </li>
                     <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
                         <span class="text-black">Total:$</span>
-                        <span> Rp.${data.total}</span>
+                        <span> $${data.total}</span>
                     </li>
                 </ul>`
                     )
@@ -523,7 +528,7 @@ const Toast = Swal.mixin({
                 <ul class="generic-list-item pb-4">
                     <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
                         <span class="text-black">Subtotal: </span>
-                        <span>Rp.${data.subtotal} </span>
+                        <span>$${data.subtotal} </span>
                     </li>
                     <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
                         <span class="text-black">Coupon Name : </span>
@@ -535,12 +540,12 @@ const Toast = Swal.mixin({
 
                     <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
                         <span class="text-black">Coupon Discount:</span>
-                        <span> Rp.${data.discount_amount}</span>
+                        <span> $${data.discount_amount}</span>
                     </li>
 
                     <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
                         <span class="text-black">Grand Total:</span>
-                        <span> Rp.${data.total_amount}</span>
+                        <span> $${data.total_amount}</span>
                     </li> 
 
                 </ul>`
@@ -557,7 +562,58 @@ const Toast = Swal.mixin({
 </script>
 {{-- /// End Apply Coupon  // --}}
 
+<script type="text/javascript">
+   function applyInsCoupon(){
+        var coupon_name = $('#coupon_name').val();
+        var course_id = $('#course_id').val();
+        var instructor_id = $('#instrutor_id').val();
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            data: {coupon_name:coupon_name,course_id:course_id,instructor_id:instructor_id},
+            url: "/inscoupon-apply",
 
+            success:function(data){
+                couponCalculation(); 
+
+                if (data.validity == true) {
+                    $('#couponField').hide();
+                }
+
+// Start Message 
+
+const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000 
+            })
+            if ($.isEmptyObject(data.error)) {
+                    
+                    Toast.fire({
+                    type: 'success', 
+                    icon: 'success', 
+                    title: data.success, 
+                    })
+
+            }else{
+               
+           Toast.fire({
+                    type: 'error', 
+                    icon: 'error', 
+                    title: data.error, 
+                    })
+                }
+
+              // End Message   
+
+
+            }
+        })
+    }
+
+
+</script>
 
  {{-- /// Remove Coupon Start  // --}}
  <script type="text/javascript">

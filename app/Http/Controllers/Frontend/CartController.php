@@ -238,6 +238,41 @@ class CartController extends Controller
         }
     }
 
+    public function InsCouponApply(Request $request)
+    {
+        // Temukan kupon yang valid
+        $coupon = Coupon::where('coupon_name', $request->coupon_name)
+            ->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))
+            ->first();
+    
+        if ($coupon) {
+            if ($coupon->course_id == $request->course_id && $coupon->instructor_id == $request->instructor_id) {
+                $total = floatval(str_replace(',', '', Cart::total())); // Pastikan total adalah float
+    
+                $discountAmount = round($total * $coupon->coupon_discount / 100);
+                $totalAmount = round($total - $discountAmount);
+    
+                // Simpan informasi kupon di sesi
+                Session::put('coupon', [
+                    'coupon_name' => $coupon->coupon_name,
+                    'coupon_discount' => $coupon->coupon_discount,
+                    'discount_amount' => $discountAmount,
+                    'total_amount' => $totalAmount
+                ]);
+    
+                return response()->json([
+                    'validity' => true,
+                    'success' => 'Coupon Applied Successfully'
+                ]);
+            } else {
+                return response()->json(['error' => 'Coupon Criteria Not Met for this course and instructor']);
+            }
+        } else {
+            return response()->json(['error' => 'Invalid Coupon']);
+        }
+    }
+    
+
     public function CouponCalculation()
     {
         if (Session::has('coupon')) {
