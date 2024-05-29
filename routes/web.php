@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\ActiveUserController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -163,6 +164,13 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('/update/review/status', 'UpdateReviewStatus')->name('update.review.status');
         Route::get('/admin/active/review', 'AdminActiveReview')->name('admin.active.review');
     });
+
+    // Admin All user and Instructor All Route 
+Route::controller(ActiveUserController::class)->group(function(){
+    Route::get('/all/user','AllUser')->name('all.user'); 
+    Route::get('/all/instructor','AllInstructor')->name('all.instructor'); 
+
+});
 }); // End Admin Group Middleware 
 
 
