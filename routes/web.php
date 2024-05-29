@@ -15,6 +15,8 @@ use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\QuestionController;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Controllers\Backend\ReportController;
+
 
 
 
@@ -148,6 +150,14 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/pending-confrim/{id}', 'PendingToConfirm')->name('pending-confrim');
         Route::get('/admin/confirm/order', 'AdminConfirmOrder')->name('admin.confirm.order');
     });
+
+    // Admin Report All Route 
+Route::controller(ReportController::class)->group(function(){
+    Route::get('/report/view','ReportView')->name('report.view'); 
+    Route::post('/search/by/date','SearchByDate')->name('search.by.date');
+    Route::post('/search/by/month','SearchByMonth')->name('search.by.month');
+    Route::post('/search/by/year','SearchByYear')->name('search.by.year');
+});
 }); // End Admin Group Middleware 
 
 
