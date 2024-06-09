@@ -214,11 +214,9 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
     $user = auth()->user();
 @endphp
                                          <!-- Tombol -->
-                @if ($user->hasOrderedCourse($course->id))
-                    <button type="button" class="btn theme-btn flex-grow-1 mr-3" disabled>Telah Terdaftar</button>
-                @else
+            
                     <button type="submit" class="btn theme-btn flex-grow-1 mr-3" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')">Daftar</button>
-                @endif
+             
                                         
                                     </div>
                                 </div><!-- end card-body -->
