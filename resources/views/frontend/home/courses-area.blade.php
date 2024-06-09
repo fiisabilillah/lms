@@ -30,7 +30,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
         <div class="container">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="business" role="tabpanel" aria-labelledby="business-tab">
-                    
+
                     <div class="row">
 
                         @foreach ($courses as $course)
@@ -84,7 +84,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
 
                                     <!-- <h5 class="card-title"><a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}">{{ $course->course_name }}</a></h5> -->
                                     <h5 class="card-title"><a href="javascript:void">{{ $course->course_name }}</a></h5>
-                               
+
                                     <p class="card-text"><a href="{{ route('instructor.details',$course->instructor_id) }}">{{ $course['user']['name'] }}</a></p>
                                     <div class="rating-wrap d-flex align-items-center py-2">
                                         <div class="review-stars">
@@ -127,14 +127,16 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                                     </div>
                                     <!-- end rating-wrap -->
                                     <div class="d-flex justify-content-between align-items-center">
-                                    @php
-    $user = auth()->user();
-@endphp
-                                         <!-- Tombol -->
-              
-                    <button type="submit" class="btn theme-btn flex-grow-1 mr-3" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')">Daftar</button>
-              
-                                        
+                                        @php
+                                        $user = auth()->user();
+                                        @endphp
+                                        <!-- Tombol -->
+                                        @if ($user->hasOrderedCourse($course->id))
+                                        <button type="button" class="btn theme-btn flex-grow-1 mr-3" disabled>Telah Terdaftar</button>
+                                        @else
+                                        <button type="submit" class="btn theme-btn flex-grow-1 mr-3" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')">Daftar</button>
+                                        @endif
+
                                     </div>
                                 </div><!-- end card-body -->
                             </div><!-- end card -->
@@ -167,7 +169,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
 
                                     <!-- <h5 class="card-title"><a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}">{{ $course->course_name }}</a></h5> -->
                                     <h5 class="card-title"><a href="javascript:void">{{ $course->course_name }}</a></h5>
-                               
+
                                     <p class="card-text"><a href="{{ route('instructor.details',$course->instructor_id) }}">{{ $course['user']['name'] }}</a></p>
                                     <div class="rating-wrap d-flex align-items-center py-2">
                                         <div class="review-stars">
@@ -210,14 +212,16 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                                     </div>
                                     <!-- end rating-wrap -->
                                     <div class="d-flex justify-content-between align-items-center">
-                                    @php
-    $user = auth()->user();
-@endphp
-                                         <!-- Tombol -->
-            
-                    <button type="submit" class="btn theme-btn flex-grow-1 mr-3" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')">Daftar</button>
-             
-                                        
+                                        @php
+                                        $user = auth()->user();
+                                        @endphp
+                                        <!-- Tombol -->
+                                        @if ($user->hasOrderedCourse($course->id))
+                                        <button type="button" class="btn theme-btn flex-grow-1 mr-3" disabled>Telah Terdaftar</button>
+                                        @else
+                                        <button type="submit" class="btn theme-btn flex-grow-1 mr-3" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')">Daftar</button>
+                                        @endif
+
                                     </div>
                                 </div><!-- end card-body -->
                             </div><!-- end card -->
