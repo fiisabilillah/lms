@@ -39,7 +39,7 @@ Easy Learning
 <!--======================================
         START COURSE AREA
 ======================================-->
-@include('frontend.home.courses-area-two')
+<!-- @include('frontend.home.courses-area-two') -->
 <!--======================================
         END COURSE AREA
 ======================================-->
@@ -55,7 +55,7 @@ Easy Learning
 <!--======================================
         START CTA AREA
 ======================================-->
-@include('frontend.home.cta-area')
+<!-- @include('frontend.home.cta-area') -->
 <!--======================================
         END CTA AREA
 ======================================-->
@@ -83,7 +83,7 @@ Easy Learning
 <!--======================================
         START REGISTER AREA
 ======================================-->
-@include('frontend.home.register-area')
+<!-- @include('frontend.home.register-area') -->
 <!--======================================
         END REGISTER AREA
 ======================================-->
@@ -109,7 +109,7 @@ Easy Learning
 <!--======================================
         START GET STARTED AREA
 ======================================-->
-@include('frontend.home.started-area')
+<!-- @include('frontend.home.started-area') -->
 <!-- ================================
        START GET STARTED AREA
 ================================= -->

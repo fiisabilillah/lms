@@ -71,7 +71,7 @@
                 </div><!-- end card -->
                 <div class="card card-item">
                     <div class="card-body">
-                        <h3 class="card-title fs-22 pb-3">Select Payment Method</h3>
+                        <!-- <h3 class="card-title fs-22 pb-3">Select Payment Method</h3> -->
                         <div class="divider"><span></span></div>
                         <div class="payment-option-wrap">
                             <div class="payment-tab is-active">
@@ -80,10 +80,10 @@
                                     <label for="cashTransfer">Direct Payment</label>
                                 </div>
 
-                                <div class="payment-tab-toggle">
+                                <!-- <div class="payment-tab-toggle">
                                     <input checked="" id="bankTransfer" name="cash_delivery" type="radio" value="stripe">
                                     <label for="bankTransfer">Stripe Payment</label>
-                                </div>
+                                </div> -->
 
                             </div><!-- end payment-tab -->
 
@@ -115,15 +115,16 @@
                                 </a>
                                 <div class="media-body">
                                     <h5 class="fs-15 pb-2"><a href="{{ url('course/details/'.$item->id.'/'.$item->options->slug) }}">{{ $item->name }} </a></h5>
-                                    <p class="text-black font-weight-semi-bold lh-18">Rp.{{ $item->price }} </p>
+                                    <!-- <p class="text-black font-weight-semi-bold lh-18">Rp.{{ $item->price }} </p> -->
                                 </div>
-                            </div><!-- end media -->
+                            </div>
+                            <!-- end media -->
                             @endforeach
 
 
 
                         </div><!-- end order-details-lists -->
-                        <a href="{{ route('mycart') }}" class="btn-text"><i class="la la-edit mr-1"></i>Edit</a>
+                        <!-- <a href="{{ route('mycart') }}" class="btn-text"><i class="la la-edit mr-1"></i>Edit</a> -->
                     </div><!-- end card-body -->
                 </div><!-- end card -->
                 <div class="card card-item">
@@ -158,14 +159,14 @@
                         <input type="hidden" name="total" value="{{ $cartTotal}}">
                         @else
 
-                        <ul class="generic-list-item generic-list-item-flash fs-15">
+                        <!-- <ul class="generic-list-item generic-list-item-flash fs-15">
 
                             <li class="d-flex align-items-center justify-content-between font-weight-bold">
                                 <span class="text-black">Total:</span>
                                 <span>Rp.{{ $cartTotal }}</span>
                             </li>
                             <input type="hidden" name="total" value="{{ $cartTotal}}">
-                        </ul>
+                        </ul> -->
 
                         @endif
 

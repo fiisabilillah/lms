@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-select.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/fancybox.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/tooltipster.bundle.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('frontend/css/tooltipster.bundle.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('frontend/css/plyr.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <!-- end inject -->
@@ -108,7 +108,7 @@
 <script src="{{ asset('frontend/js/fancybox.js') }}"></script>
 <script src="{{ asset('frontend/js/datedropper.min.js') }}"></script>
 <script src="{{ asset('frontend/js/emojionearea.min.js') }}"></script>
-<script src="{{ asset('frontend/js/tooltipster.bundle.min.js') }}"></script>
+<!-- <script src="{{ asset('frontend/js/tooltipster.bundle.min.js') }}"></script> -->
 <script src="{{ asset('frontend/js/plyr.js') }}"></script>
 <script src="{{ asset('frontend/js/jquery.lazy.min.js') }}"></script>
 <script src="{{ asset('frontend/js/main.js') }}"></script>
