@@ -75,6 +75,22 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }// End Method 
 
+    public function hasOrderedCourse($courseId)
+    {
+        return $this->orders()->where('course_id', $courseId)->exists();
+    }
+
+    /**
+     * Define the relationship between user and orders.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+
+    
+
 
 
 

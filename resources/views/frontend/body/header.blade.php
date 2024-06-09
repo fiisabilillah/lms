@@ -148,7 +148,7 @@ $setting = App\Models\SiteSetting::find(1);
                             </nav><!-- end main-menu -->
 
 
-                            <div class="shop-cart mr-4">
+                            <!-- <div class="shop-cart mr-4">
                                 <ul>
                                     <li>
                                         <p class="shop-cart-btn d-flex align-items-center">
@@ -174,7 +174,8 @@ $setting = App\Models\SiteSetting::find(1);
                                         </ul>
                                     </li>
                                 </ul>
-                            </div><!-- end shop-cart -->
+                            </div> -->
+                            <!-- end shop-cart -->
                             <div class="nav-right-button">
                                 <a href="admission.html" class="btn theme-btn d-none d-lg-inline-block"><i class="la la-user-plus mr-1"></i> Admission</a>
                             </div><!-- end nav-right-button -->

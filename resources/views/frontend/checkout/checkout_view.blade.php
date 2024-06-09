@@ -30,72 +30,23 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="card card-item">
-                    <div class="card-body">
-                        <h3 class="card-title fs-22 pb-3">Billing Details</h3>
-                        <div class="divider"><span></span></div>
-                        <form method="post" class="row" action="{{ route('payment') }}" enctype="multipart/form-data">
+                    
+                <form method="post" class="row" action="{{ route('payment') }}" enctype="multipart/form-data">
                             @csrf
 
-                            <div class="input-box col-lg-6">
-                                <label class="label-text">First Name</label>
-                                <div class="form-group">
-                                    <input class="form-control form--control" type="text" name="name" value="{{ Auth::user()->name }}">
-                                    <span class="la la-user input-icon"></span>
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box col-lg-6">
-                                <label class="label-text">Email</label>
-                                <div class="form-group">
-                                    <input class="form-control form--control" type="email" name="email" value="{{ Auth::user()->email }}">
-                                    <span class="la la-user input-icon"></span>
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box col-lg-12">
-                                <label class="label-text">Address</label>
-                                <div class="form-group">
-                                    <input class="form-control form--control" type="text" name="address" value="{{ Auth::user()->address }}">
-                                    <span class="la la-envelope input-icon"></span>
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box col-lg-12">
-                                <label class="label-text">Phone Number</label>
-                                <div class="form-group">
-                                    <input id="phone" class="form-control form--control" type="tel" name="phone" value="{{ Auth::user()->phone }}">
-                                </div>
-                            </div><!-- end input-box -->
-
-
-
-
-                    </div><!-- end card-body -->
+                            <input type="hidden" class="form-control form--control" type="text" name="name" value="{{ Auth::user()->name }}">
+                            <input type="hidden" class="form-control form--control" type="email" name="email" value="{{ Auth::user()->email }}">
+                            <input type="hidden" class="form-control form--control" type="text" name="address" value="{{ Auth::user()->address }}">
+                            <input type="hidden" id="phone" class="form-control form--control" type="tel" name="phone" value="{{ Auth::user()->phone }}">
                 </div><!-- end card -->
                 <div class="card card-item">
-                    <div class="card-body">
-                        <!-- <h3 class="card-title fs-22 pb-3">Select Payment Method</h3> -->
-                        <div class="divider"><span></span></div>
-                        <div class="payment-option-wrap">
-                            <div class="payment-tab is-active">
-                                <div class="payment-tab-toggle">
-                                    <input checked="" id="cashTransfer" name="cash_delivery" type="radio" value="handcash">
-                                    <label for="cashTransfer">Direct Payment</label>
-                                </div>
-
-                                <!-- <div class="payment-tab-toggle">
-                                    <input checked="" id="bankTransfer" name="cash_delivery" type="radio" value="stripe">
-                                    <label for="bankTransfer">Stripe Payment</label>
-                                </div> -->
-
-                            </div><!-- end payment-tab -->
-
-
-                        </div>
-                    </div><!-- end card-body -->
+                <input type="hidden" checked="" id="cashTransfer" name="cash_delivery" type="radio" value="handcash">
                 </div><!-- end card -->
             </div><!-- end col-lg-7 -->
-            <div class="col-lg-5">
+            <div class="col-lg-12" style="margin-top: -150px;">
                 <div class="card card-item">
                     <div class="card-body">
-                        <h3 class="card-title fs-22 pb-3">Order Details</h3>
+                        <h3 class="card-title fs-30 pb-3">Daftar Details</h3>
                         <div class="divider"><span></span></div>
                         <div class="order-details-lists">
 
@@ -114,7 +65,9 @@
                                     <img src="{{ asset($item->options->image) }}" alt="Cart image">
                                 </a>
                                 <div class="media-body">
-                                    <h5 class="fs-15 pb-2"><a href="{{ url('course/details/'.$item->id.'/'.$item->options->slug) }}">{{ $item->name }} </a></h5>
+                                    <h5 class="fs-15 pb-2"><a style="font-size: 22px;" href="{{ url('course/details/'.$item->id.'/'.$item->options->slug) }}">{{ $item->name }} </a></h5>
+                                    <h6 class="ribbon ribbon-red-bg fs-14 mb-3 ">Tanggal pelaksanaan : {{ \Carbon\Carbon::parse($item->options->tgl_mulai)->translatedFormat('d F Y') }} s/d {{ \Carbon\Carbon::parse($item->options->tgl_selesai)->translatedFormat('d F Y') }}</h6>
+
                                     <!-- <p class="text-black font-weight-semi-bold lh-18">Rp.{{ $item->price }} </p> -->
                                 </div>
                             </div>
@@ -129,8 +82,8 @@
                 </div><!-- end card -->
                 <div class="card card-item">
                     <div class="card-body">
-                        <h3 class="card-title fs-22 pb-3">Order Summary</h3>
-                        <div class="divider"><span></span></div>
+                        <!-- <h3 class="card-title fs-22 pb-3">Order Summary</h3>
+                        <div class="divider"><span></span></div> -->
 
                         @if (Session::has('coupon'))
 
@@ -176,14 +129,14 @@
 
 
                         <div class="btn-box border-top border-top-gray pt-3">
-                            <p class="fs-14 lh-22 mb-2">Aduca is required by law to collect applicable transaction taxes for purchases made in certain tax jurisdictions.</p>
-                            <p class="fs-14 lh-22 mb-3">By completing your purchase you agree to these <a href="#" class="text-color hover-underline">Terms of Service.</a></p>
+                            <!-- <p class="fs-14 lh-22 mb-2">Aduca is required by law to collect applicable transaction taxes for purchases made in certain tax jurisdictions.</p>
+                            <p class="fs-14 lh-22 mb-3">By completing your purchase you agree to these <a href="#" class="text-color hover-underline">Terms of Service.</a></p> -->
                             <button type="submit" class="btn theme-btn w-100">Proceed <i class="la la-arrow-right icon ml-1"></i></button>
 
                         </div>
                     </div><!-- end card-body -->
                 </div><!-- end card -->
-            </div><!-- end col-lg-5 -->
+            </div><!-- end col-lg-12 -->
         </div><!-- end row -->
     </div><!-- end container -->
 
