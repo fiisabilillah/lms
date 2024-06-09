@@ -79,66 +79,71 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
 
 
                                 <div class="card-body">
-                                    <!-- <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">{{ $course->label }}</h6> -->
-                                    <h6 class="ribbon ribbon-red-bg fs-14 mb-3 ">Tanggal pelaksanaan : {{ \Carbon\Carbon::parse($course->tgl_mulai)->translatedFormat('d F Y') }} s/d {{ \Carbon\Carbon::parse($course->tgl_selesai)->translatedFormat('d F Y') }}</h6>
+    <!-- <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">{{ $course->label }}</h6> -->
+    <h6 class="ribbon ribbon-red-bg fs-14 mb-3">Tanggal pelaksanaan : {{ \Carbon\Carbon::parse($course->tgl_mulai)->translatedFormat('d F Y') }} s/d {{ \Carbon\Carbon::parse($course->tgl_selesai)->translatedFormat('d F Y') }}</h6>
 
-                                    <!-- <h5 class="card-title"><a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}">{{ $course->course_name }}</a></h5> -->
-                                    <h5 class="card-title"><a href="javascript:void">{{ $course->course_name }}</a></h5>
+    <!-- <h5 class="card-title"><a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}">{{ $course->course_name }}</a></h5> -->
+    <h5 class="card-title"><a href="javascript:void">{{ $course->course_name }}</a></h5>
 
-                                    <p class="card-text"><a href="{{ route('instructor.details',$course->instructor_id) }}">{{ $course['user']['name'] }}</a></p>
-                                    <div class="rating-wrap d-flex align-items-center py-2">
-                                        <div class="review-stars">
-                                            <span class="rating-number">{{ round($avarage,1) }}</span>
-                                            @if ($avarage == 0)
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
-                                            @elseif ($avarage == 1 || $avarage < 2) <span class="la la-star"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                @elseif ($avarage == 2 || $avarage < 3) <span class="la la-star"></span>
-                                                    <span class="la la-star"></span>
-                                                    <span class="la la-star-o"></span>
-                                                    <span class="la la-star-o"></span>
-                                                    <span class="la la-star-o"></span>
-                                                    @elseif ($avarage == 3 || $avarage < 4) <span class="la la-star"></span>
-                                                        <span class="la la-star"></span>
-                                                        <span class="la la-star"></span>
-                                                        <span class="la la-star-o"></span>
-                                                        <span class="la la-star-o"></span>
-                                                        @elseif ($avarage == 4 || $avarage < 5) <span class="la la-star"></span>
-                                                            <span class="la la-star"></span>
-                                                            <span class="la la-star"></span>
-                                                            <span class="la la-star"></span>
-                                                            <span class="la la-star-o"></span>
-                                                            @elseif ($avarage == 5 || $avarage < 5) <span class="la la-star"></span>
-                                                                <span class="la la-star"></span>
-                                                                <span class="la la-star"></span>
-                                                                <span class="la la-star"></span>
-                                                                <span class="la la-star"></span>
-                                                                @endif
-                                        </div>
-                                        <span class="rating-total pl-1">({{ count($reviewcount) }})</span>
-                                        <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist" id="{{ $course->id }}" onclick="addToWishList(this.id)"><i class="la la-heart-o"></i></div>
-                                    </div>
-                                    <!-- end rating-wrap -->
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        @php
-                                        $user = auth()->user();
-                                        @endphp
-                                        <!-- Tombol -->
-                                        @if ($user->hasOrderedCourse($course->id))
-                                        <button type="button" class="btn theme-btn flex-grow-1 mr-3" disabled>Telah Terdaftar</button>
-                                        @else
-                                        <button type="submit" class="btn theme-btn flex-grow-1 mr-3" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')">Daftar</button>
-                                        @endif
-
-                                    </div>
-                                </div><!-- end card-body -->
+    <p class="card-text"><a href="{{ route('instructor.details',$course->instructor_id) }}">{{ $course['user']['name'] }}</a></p>
+    <div class="rating-wrap d-flex align-items-center py-2">
+        <div class="review-stars">
+            <span class="rating-number">{{ round($avarage,1) }}</span>
+            @if ($avarage == 0)
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+            @elseif ($avarage == 1 || $avarage < 2)
+                <span class="la la-star"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+            @elseif ($avarage == 2 || $avarage < 3)
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+            @elseif ($avarage == 3 || $avarage < 4)
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+            @elseif ($avarage == 4 || $avarage < 5)
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star-o"></span>
+            @elseif ($avarage == 5 || $avarage < 5)
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+            @endif
+        </div>
+        <span class="rating-total pl-1">{{ count($reviewcount) }}</span>
+        <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist" id="{{ $course->id }}" onclick="addToWishList(this.id)"><i class="la la-heart-o"></i></div>
+    </div>
+    <!-- end rating-wrap -->
+    <div class="d-flex justify-content-between align-items-center">
+        @php
+            $user = auth()->user();
+        @endphp
+        <!-- Tombol -->
+        @if ($user && $user->hasOrderedCourse($course->id))
+            <button type="button" class="btn theme-btn flex-grow-1 mr-3" disabled>Telah Terdaftar</button>
+        @else
+            <button type="submit" class="btn theme-btn flex-grow-1 mr-3" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')">Daftar</button>
+        @endif
+    </div>
+</div>
+<!-- end card-body -->
                             </div><!-- end card -->
                         </div><!-- end col-lg-4 -->
                         @endforeach
@@ -164,66 +169,71 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                                     <img class="card-img-top lazy" src="{{ asset($course->course_image) }}" data-src="images/img8.jpg" alt="Card image cap">
                                 </div><!-- end card-image -->
                                 <div class="card-body">
-                                    <!-- <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">{{ $course->label }}</h6> -->
-                                    <h6 class="ribbon ribbon-red-bg fs-14 mb-3 ">Tanggal pelaksanaan : {{ \Carbon\Carbon::parse($course->tgl_mulai)->translatedFormat('d F Y') }} s/d {{ \Carbon\Carbon::parse($course->tgl_selesai)->translatedFormat('d F Y') }}</h6>
+    <!-- <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">{{ $course->label }}</h6> -->
+    <h6 class="ribbon ribbon-red-bg fs-14 mb-3">Tanggal pelaksanaan : {{ \Carbon\Carbon::parse($course->tgl_mulai)->translatedFormat('d F Y') }} s/d {{ \Carbon\Carbon::parse($course->tgl_selesai)->translatedFormat('d F Y') }}</h6>
 
-                                    <!-- <h5 class="card-title"><a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}">{{ $course->course_name }}</a></h5> -->
-                                    <h5 class="card-title"><a href="javascript:void">{{ $course->course_name }}</a></h5>
+    <!-- <h5 class="card-title"><a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}">{{ $course->course_name }}</a></h5> -->
+    <h5 class="card-title"><a href="javascript:void">{{ $course->course_name }}</a></h5>
 
-                                    <p class="card-text"><a href="{{ route('instructor.details',$course->instructor_id) }}">{{ $course['user']['name'] }}</a></p>
-                                    <div class="rating-wrap d-flex align-items-center py-2">
-                                        <div class="review-stars">
-                                            <span class="rating-number">{{ round($avarage,1) }}</span>
-                                            @if ($avarage == 0)
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
-                                            @elseif ($avarage == 1 || $avarage < 2) <span class="la la-star"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                @elseif ($avarage == 2 || $avarage < 3) <span class="la la-star"></span>
-                                                    <span class="la la-star"></span>
-                                                    <span class="la la-star-o"></span>
-                                                    <span class="la la-star-o"></span>
-                                                    <span class="la la-star-o"></span>
-                                                    @elseif ($avarage == 3 || $avarage < 4) <span class="la la-star"></span>
-                                                        <span class="la la-star"></span>
-                                                        <span class="la la-star"></span>
-                                                        <span class="la la-star-o"></span>
-                                                        <span class="la la-star-o"></span>
-                                                        @elseif ($avarage == 4 || $avarage < 5) <span class="la la-star"></span>
-                                                            <span class="la la-star"></span>
-                                                            <span class="la la-star"></span>
-                                                            <span class="la la-star"></span>
-                                                            <span class="la la-star-o"></span>
-                                                            @elseif ($avarage == 5 || $avarage < 5) <span class="la la-star"></span>
-                                                                <span class="la la-star"></span>
-                                                                <span class="la la-star"></span>
-                                                                <span class="la la-star"></span>
-                                                                <span class="la la-star"></span>
-                                                                @endif
-                                        </div>
-                                        <span class="rating-total pl-1">({{ count($reviewcount) }})</span>
-                                        <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist" id="{{ $course->id }}" onclick="addToWishList(this.id)"><i class="la la-heart-o"></i></div>
-                                    </div>
-                                    <!-- end rating-wrap -->
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        @php
-                                        $user = auth()->user();
-                                        @endphp
-                                        <!-- Tombol -->
-                                        @if ($user->hasOrderedCourse($course->id))
-                                        <button type="button" class="btn theme-btn flex-grow-1 mr-3" disabled>Telah Terdaftar</button>
-                                        @else
-                                        <button type="submit" class="btn theme-btn flex-grow-1 mr-3" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')">Daftar</button>
-                                        @endif
-
-                                    </div>
-                                </div><!-- end card-body -->
+    <p class="card-text"><a href="{{ route('instructor.details',$course->instructor_id) }}">{{ $course['user']['name'] }}</a></p>
+    <div class="rating-wrap d-flex align-items-center py-2">
+        <div class="review-stars">
+            <span class="rating-number">{{ round($avarage,1) }}</span>
+            @if ($avarage == 0)
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+            @elseif ($avarage == 1 || $avarage < 2)
+                <span class="la la-star"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+            @elseif ($avarage == 2 || $avarage < 3)
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+            @elseif ($avarage == 3 || $avarage < 4)
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star-o"></span>
+                <span class="la la-star-o"></span>
+            @elseif ($avarage == 4 || $avarage < 5)
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star-o"></span>
+            @elseif ($avarage == 5 || $avarage < 5)
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+                <span class="la la-star"></span>
+            @endif
+        </div>
+        <span class="rating-total pl-1">{{ count($reviewcount) }}</span>
+        <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist" id="{{ $course->id }}" onclick="addToWishList(this.id)"><i class="la la-heart-o"></i></div>
+    </div>
+    <!-- end rating-wrap -->
+    <div class="d-flex justify-content-between align-items-center">
+        @php
+            $user = auth()->user();
+        @endphp
+        <!-- Tombol -->
+        @if ($user && $user->hasOrderedCourse($course->id))
+            <button type="button" class="btn theme-btn flex-grow-1 mr-3" disabled>Telah Terdaftar</button>
+        @else
+            <button type="submit" class="btn theme-btn flex-grow-1 mr-3" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')">Daftar</button>
+        @endif
+    </div>
+</div>
+<!-- end card-body -->
                             </div><!-- end card -->
                         </div><!-- end col-lg-4 -->
 
