@@ -223,16 +223,18 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
         <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist" id="{{ $course->id }}" onclick="addToWishList(this.id)"><i class="la la-heart-o"></i></div>
     </div>
     <!-- end rating-wrap -->
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="justify-content-between align-items-center">
         @php
             $user = auth()->user();
         @endphp
         <!-- Tombol -->
-        @if ($user && $user->hasOrderedCourse($course->id))
-            <button type="button" class="btn theme-btn flex-grow-1 mr-3" disabled>Telah Terdaftar</button>
-        @else
-            <button type="submit" class="btn theme-btn flex-grow-1 mr-3" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')">Daftar</button>
-        @endif
+        <!-- Tombol -->
+    @if ($user && $user->hasOrderedCourse($course->id))
+        <button type="button" class="btn theme-btn w-100 d-block mb-2" disabled>Telah Terdaftar</button>
+        <button type="button" class="btn theme w-100 btn-success d-block">Join Grup WhatsApp</button>
+    @else
+        <button type="submit" class="btn theme-btn w-100 d-block mb-3" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')">Daftar</button>
+    @endif
     </div>
 </div>
 <!-- end card-body -->
