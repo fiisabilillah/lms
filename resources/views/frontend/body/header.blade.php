@@ -13,7 +13,8 @@ $setting = App\Models\SiteSetting::find(1);
                             <li class="d-flex align-items-center pr-3 mr-3 border-right border-right-gray"><i class="la la-phone mr-1"></i><a href="tel:00123456789"> {{ $setting->phone }}</a></li>
                             <li class="d-flex align-items-center"><i class="la la-envelope-o mr-1"></i><a href="mailto:{{ $setting->email }}">{{ $setting->email }}</a></li>
                         </ul>
-                    </div><!-- end header-widget -->
+                    </div>
+                    <!-- end header-widget -->
                 </div><!-- end col-lg-6 -->
                 <div class="col-lg-6">
                     <div class="header-widget d-flex flex-wrap align-items-center justify-content-end">
@@ -54,7 +55,8 @@ $setting = App\Models\SiteSetting::find(1);
 
 
                         </ul>
-                    </div><!-- end header-widget -->
+                    </div>
+                    <!-- end header-widget -->
                 </div><!-- end col-lg-6 -->
             </div><!-- end row -->
         </div><!-- end container-fluid -->
@@ -88,7 +90,7 @@ $setting = App\Models\SiteSetting::find(1);
                     <div class="col-lg-10">
                         <div class="menu-wrapper">
                             <div class="menu-category">
-                                <ul>
+                                <!-- <ul>
                                     <li>
                                         <a href="#">Categories <i class="la la-angle-down fs-12"></i></a>
                                         <ul class="cat-dropdown-menu">
@@ -109,14 +111,14 @@ $setting = App\Models\SiteSetting::find(1);
 
                                         </ul>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </div><!-- end menu-category -->
-                            <form method="post">
+                            <!-- <form method="post">
                                 <div class="form-group mb-0">
                                     <input class="form-control form--control pl-3" type="text" name="search" placeholder="Search for anything">
                                     <span class="la la-search search-icon"></span>
                                 </div>
-                            </form>
+                            </form> -->
                             <nav class="main-menu">
                                 <ul>
                                     <li>
@@ -176,11 +178,14 @@ $setting = App\Models\SiteSetting::find(1);
                                 </ul>
                             </div> -->
                             <!-- end shop-cart -->
-                            <div class="nav-right-button">
+                            <!-- <div class="nav-right-button">
                                 <a href="admission.html" class="btn theme-btn d-none d-lg-inline-block"><i class="la la-user-plus mr-1"></i> Admission</a>
-                            </div><!-- end nav-right-button -->
-                        </div><!-- end menu-wrapper -->
-                    </div><!-- end col-lg-10 -->
+                            </div> -->
+                            <!-- end nav-right-button -->
+                        </div>
+                        <!-- end menu-wrapper -->
+                    </div>
+                    <!-- end col-lg-10 -->
                 </div><!-- end row -->
             </div>
         </div><!-- end container-fluid -->

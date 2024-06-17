@@ -6,8 +6,8 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
 <section class="course-area pb-120px">
     <div class="container">
         <div class="section-heading text-center">
-            <h5 class="ribbon ribbon-lg mb-2">Choose your desired courses</h5>
-            <h2 class="section__title">The world's largest selection of courses</h2>
+            <!-- <h5 class="ribbon ribbon-lg mb-2">Choose your desired courses</h5> -->
+            <h2 class="section__title">Pilih kegiatan yang Anda inginkan</h2>
             <span class="section-divider"></span>
         </div><!-- end section-heading -->
 
@@ -140,9 +140,15 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
         <button type="button" class="btn theme-btn w-100 d-block mb-2" disabled>Telah Terdaftar</button>
         <button type="button" class="btn theme w-100 btn-success d-block">Join Grup WhatsApp</button>
     @else
-        <button type="submit" class="btn theme-btn w-100 d-block mb-3" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')">Daftar</button>
+        @auth
+            <button type="submit" class="btn theme-btn w-100 d-block mb-3" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')">Daftar</button>
+        @endauth
+        @guest
+            <button type="button" class="btn theme-btn w-100 d-block mb-3" disabled>Daftar (Login untuk melanjutkan)</button>
+        @endguest
     @endif
 </div>
+
 
 </div>
 <!-- end card-body -->
