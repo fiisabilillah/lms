@@ -67,7 +67,7 @@
                     <!-- end section-heading -->
                     <div class="hero-btn-box d-flex flex-wrap align-items-center pt-1">
                         <a href="{{ route('login') }}" class="btn theme-btn mr-4 mb-4">Login <i class="la la-arrow-right icon ml-1"></i></a>
-                        <a href="#" class="btn-text video-play-btn mb-4 text-danger" data-fancybox data-src="https://www.youtube.com/watch?v=cRXm1p-CNyk">
+                        <a href="#" class="btn-text video-play-btn mb-4 text-danger" data-fancybox data-src="https://youtu.be/oWYuk9WR6J0?si=Mrjyidcp4H_QH56H">
                             Video Tutorial<i class="la la-play icon-btn ml-2"></i>
                         </a>
                     </div><!-- end hero-btn-box -->
