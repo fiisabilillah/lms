@@ -263,7 +263,8 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
             </div><!-- end tab-content -->
             <div class="more-btn-box mt-4 text-center">
                 <a href="course-grid.html" class="btn theme-btn">Browse all Courses <i class="la la-arrow-right icon ml-1"></i></a>
-            </div><!-- end more-btn-box -->
+            </div>
+            <!-- end more-btn-box -->
         </div><!-- end container -->
     </div><!-- end card-content-wrapper -->
 </section><!-- end courses-area -->
