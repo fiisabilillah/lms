@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="author" content="TechyDevs">
@@ -8,11 +9,16 @@
 
     <title>@yield('title') </title>
 
+    <!-- PWA  -->
+    <meta name="theme-color" content="#6777ef" />
+    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Favicon --> 
+    <!-- Favicon -->
     <link rel="icon" sizes="16x16" href="{{ asset('frontend/images/favicon.png') }}">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -31,121 +37,146 @@
 
 
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
     <style>
-    /* Gaya umum */
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-    .container {
-        width: 80%;
-        margin: auto;
-        padding: 20px;
-    }
-    /* Gaya untuk perangkat dengan lebar layar <= 768px */
-    @media only screen and (max-width: 768px) {
-        .container {
-            width: 90%; /* Misalnya, mengubah lebar kontainer untuk layar kecil */
+        /* Gaya umum */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
-    }
-    /* Gaya tambahan untuk perangkat dengan lebar layar <= 480px */
-    @media only screen and (max-width: 480px) {
+
         .container {
-            width: 95%; /* Misalnya, mengubah lebar kontainer untuk layar sangat kecil */
+            width: 80%;
+            margin: auto;
+            padding: 20px;
         }
-    }
-</style>
+
+        /* Gaya untuk perangkat dengan lebar layar <= 768px */
+        @media only screen and (max-width: 768px) {
+            .container {
+                width: 90%;
+                /* Misalnya, mengubah lebar kontainer untuk layar kecil */
+            }
+        }
+
+        /* Gaya tambahan untuk perangkat dengan lebar layar <= 480px */
+        @media only screen and (max-width: 480px) {
+            .container {
+                width: 95%;
+                /* Misalnya, mengubah lebar kontainer untuk layar sangat kecil */
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- start cssload-loader -->
-<div class="preloader">
-    <div class="loader">
-        <svg class="spinner" viewBox="0 0 50 50">
-            <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
-        </svg>
+    <!-- start cssload-loader -->
+    <div class="preloader">
+        <div class="loader">
+            <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+            </svg>
+        </div>
     </div>
-</div>
-<!-- end cssload-loader -->
+    <!-- end cssload-loader -->
 
-<!--======================================
+    <!--======================================
         START HEADER AREA
     ======================================-->
-  @include('frontend.body.header')
-<!--======================================
+    @include('frontend.body.header')
+    <!--======================================
         END HEADER AREA
 ======================================-->
 
- @yield('home')
+    @yield('home')
 
-<!-- ================================
+    <!-- ================================
          END FOOTER AREA
 ================================= -->
-   @include('frontend.body.footer')
-<!-- ================================
+    @include('frontend.body.footer')
+    <!-- ================================
           END FOOTER AREA
 ================================= -->
 
-<!-- start scroll top -->
-<div id="scroll-top">
-    <i class="la la-arrow-up" title="Go top"></i>
-</div>
-<!-- end scroll top -->
+    <!-- start scroll top -->
+    <div id="scroll-top">
+        <i class="la la-arrow-up" title="Go top"></i>
+    </div>
+    <!-- end scroll top -->
 
 
 
-<!-- template js files -->
-<script src="{{ asset('frontend/js/jquery-3.4.1.min.js') }}"></script>
-<script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('frontend/js/bootstrap-select.min.js') }}"></script>
-<script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('frontend/js/isotope.js') }}"></script>
-<script src="{{ asset('frontend/js/waypoint.min.js') }}"></script>
-<script src="{{ asset('frontend/js/jquery.counterup.min.js') }}"></script>
-<script src="{{ asset('frontend/js/fancybox.js') }}"></script>
-<script src="{{ asset('frontend/js/datedropper.min.js') }}"></script>
-<script src="{{ asset('frontend/js/emojionearea.min.js') }}"></script>
-<!-- <script src="{{ asset('frontend/js/tooltipster.bundle.min.js') }}"></script> -->
-<script src="{{ asset('frontend/js/plyr.js') }}"></script>
-<script src="{{ asset('frontend/js/jquery.lazy.min.js') }}"></script>
-<script src="{{ asset('frontend/js/main.js') }}"></script>
+    <!-- template js files -->
+    <script src="{{ asset('frontend/js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/bootstrap-select.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/isotope.js') }}"></script>
+    <script src="{{ asset('frontend/js/waypoint.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/fancybox.js') }}"></script>
+    <script src="{{ asset('frontend/js/datedropper.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/emojionearea.min.js') }}"></script>
+    <!-- <script src="{{ asset('frontend/js/tooltipster.bundle.min.js') }}"></script> -->
+    <script src="{{ asset('frontend/js/plyr.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.lazy.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/main.js') }}"></script>
 
-<script>
-    var player = new Plyr('#player');
-</script>
+    <script>
+        var player = new Plyr('#player');
+    </script>
 
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-<script>
- @if(Session::has('message'))
- var type = "{{ Session::get('alert-type','info') }}"
- switch(type){
-    case 'info':
-    toastr.info(" {{ Session::get('message') }} ");
-    break;
+    <script>
+        @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type','info') }}"
+        switch (type) {
+            case 'info':
+                toastr.info(" {{ Session::get('message') }} ");
+                break;
 
-    case 'success':
-    toastr.success(" {{ Session::get('message') }} ");
-    break;
+            case 'success':
+                toastr.success(" {{ Session::get('message') }} ");
+                break;
 
-    case 'warning':
-    toastr.warning(" {{ Session::get('message') }} ");
-    break;
+            case 'warning':
+                toastr.warning(" {{ Session::get('message') }} ");
+                break;
 
-    case 'error':
-    toastr.error(" {{ Session::get('message') }} ");
-    break; 
- }
- @endif 
-</script>
- 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+            case 'error':
+                toastr.error(" {{ Session::get('message') }} ");
+                break;
+        }
+        @endif
+    </script>
 
-@include('frontend.body.script')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    @include('frontend.body.script')
+
+    <script src="{{ asset('/sw.js') }}"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            // Register a service worker hosted at the root of the
+            // site using the default scope.
+            navigator.serviceWorker.register("/sw.js").then(
+                (registration) => {
+                    console.log("Service worker registration succeeded:", registration);
+                },
+                (error) => {
+                    console.error(`Service worker registration failed: ${error}`);
+                },
+            );
+        } else {
+            console.error("Service workers are not supported.");
+        }
+    </script>
 
 </body>
+
 </html>
